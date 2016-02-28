@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block headers %}
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+{% endblock %}
 {% block content %}
 <h1>EPIC SHIT</h2>
 <br>
