@@ -4,6 +4,9 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model.logistic import LogisticRegression
 
+def lol():
+    print("Hello World!")
+
 class mentoryWEB:
 
 
@@ -18,7 +21,9 @@ class mentoryWEB:
         self.clf = LogisticRegression(penalty='l2', C=10)
         self.clf.fit(X_train, y_train)
         
-    
+    def __str__(self):
+	return(file)    
+
     def test(self, string):
         X_test = self.vect.transform(string)	
         predictions = self.clf.predict(X_test)

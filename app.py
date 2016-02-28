@@ -27,7 +27,8 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-	    	
+            mw = tools.classifier.mentoryWEB(os.path.dirname(os.path.realpath(__file__)) + "/uploads/" + file.filename)
+            
     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
