@@ -5,7 +5,8 @@ from flask import Flask, render_template, \
  url_for, send_from_directory
 from werkzeug.wrappers import Response
 from werkzeug import secure_filename
-import tools
+import tools.classifier
+import pickle
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
 ALLOWED_EXTENSIONS = set(['txt', 'csv', 'tsv'])
@@ -27,7 +28,9 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-	    	
+            mw = tools.classifier.mentoryWEB(os.path.dirname(os.path.realpath(__file__)) + "/uploads/" + file.filename)
+            temp = pickle.dumps(mw)
+            
     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
