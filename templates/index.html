@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+</head>
+<body>
+<div id="name"></div>
+<form name="yname" action="" method="get" onsubmit="return onNameFromSubmit()">
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name">
+    <input type="submit" value="OK">
+</form>
+</body>
+</html>
