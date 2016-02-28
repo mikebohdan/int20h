@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="{{url_for('static', filename='index.js')}}"></script>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+<h1>EPIC SHIT</h2>
+<br>
+
 <div id="name"></div>
 <form name="yname" action="" method="get" onsubmit="return onNameFromSubmit()">
     <label for="your_name">Your name: </label>
@@ -13,4 +10,4 @@
     <input type="submit" value="OK">
 </form>
 </body>
-</html>
+{% endblock %}
