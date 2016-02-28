@@ -1,12 +1,14 @@
 import os
 import json
 from flask import Flask, render_template, \
-    request, make_response, redirect, url_for, send_from_directory
+    request, make_response,\
+ url_for, send_from_directory
 from werkzeug.wrappers import Response
 from werkzeug import secure_filename
+import tools
 
 UPLOAD_FOLDER = '/path/to/the/uploads'
-ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
+ALLOWED_EXTENSIONS = set(['txt', 'csv', 'tsv'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = os.path.dirname(os.path.realpath(__file__)) + "/uploads"
@@ -25,8 +27,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('uploaded_file',
-                                    filename=filename))
+	    	
     return render_template('upload.html')
 
 @app.route('/', methods=['GET', 'POST'])
