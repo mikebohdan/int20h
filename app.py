@@ -1,7 +1,7 @@
 import json
-from flask import render_template
-from flask import Flask
-from flask import request
+from flask import Flask, render_template, \
+    request, make_response
+from werkzeug.wrappers import Response
 
 app = Flask(__name__)
 
@@ -11,9 +11,9 @@ def index():
     if request.method == 'GET':
         return render_template('index.html')
     elif request.method == 'POST':
-        for i in request.__dict__:
-            print("{} -> {}".format(i, getattr(request, i)))
-        return json.dumps({'name': 'LOL'})
+        data = json.loads(request.data.decode())
+        odata = json.dumps(data)
+        return Response(odata, mimetype='text/json')
 
 if __name__ == '__main__':
     app.debug = True
